@@ -5,19 +5,35 @@ const main = async () => {
 
   const numbers = file.split("\n").map(Number);
 
-  let solution = 0;
+  let solutionPartOne = 0;
 
   numbers.some((n, i, a) => {
     return a.some((sumTo) => {
       if (n + sumTo == 2020) {
-        solution = n * sumTo;
+        solutionPartOne = n * sumTo;
         return true;
       }
       return false;
     });
   });
 
-  console.log(solution);
+  console.log(solutionPartOne);
+
+  let solutionPartTwo = 0;
+
+  numbers.some((a, i, numbersOrginal) => {
+    return numbersOrginal.some((b) => {
+      return numbersOrginal.some((c) => {
+        if (a + b + c == 2020) {
+          solutionPartTwo = a * b * c;
+          return true;
+        }
+        return false;
+      });
+    });
+  });
+
+  console.log(solutionPartTwo);
 };
 
 main();
