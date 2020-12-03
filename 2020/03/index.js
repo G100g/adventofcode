@@ -6,19 +6,17 @@ const replaceAt = (str, index, replacement) => {
   );
 };
 
-const slops = async (stepRight = 3, stepDown = 1) => {
-  const file = (await readFile(__dirname + "/input.txt", "utf8")).split("\n");
-
+const slops = (area, stepRight = 3, stepDown = 1) => {
   let tree = 0;
 
   let x = stepRight;
 
-  const [firstRow] = file.splice(0, 1);
+  const [firstRow] = area.splice(0, 1);
 
   // console.log(firstRow + " | " + firstRow);
 
-  while (file.length !== 0) {
-    const rows = file.splice(0, stepDown);
+  while (area.length !== 0) {
+    const rows = area.splice(0, stepDown);
 
     const row = rows.pop();
 
@@ -37,7 +35,6 @@ const slops = async (stepRight = 3, stepDown = 1) => {
     }
 
     // rows.forEach((r) => console.log(`${r} | ${r}`));
-
     // console.log(row + " | " + replaceAt(row, x, d));
 
     x += stepRight;
@@ -50,18 +47,20 @@ const slops = async (stepRight = 3, stepDown = 1) => {
 };
 
 const main = async () => {
-  const solutionPartOne = await slops();
+  const file = (await readFile(__dirname + "/input.txt", "utf8")).split("\n");
+
+  const solutionPartOne = await slops(file.slice());
 
   console.log(`Solution Part One: ${solutionPartOne}`);
   console.log("");
 
-  const results = await Promise.all([
-    slops(1, 1),
-    slops(3, 1),
-    slops(5, 1),
-    slops(7, 1),
-    slops(1, 2),
-  ]);
+  const results = [
+    slops(file.slice(), 1, 1),
+    slops(file.slice(), 3, 1),
+    slops(file.slice(), 5, 1),
+    slops(file.slice(), 7, 1),
+    slops(file.slice(), 1, 2),
+  ];
 
   const solutionPartTwo = results.reduce((t, r) => t * r, 1);
 
