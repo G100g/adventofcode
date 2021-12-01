@@ -1,0 +1,15 @@
+{
+  "name": "2021",
+  "version": "1.0.0",
+  "description": "",
+  "main": "run.js",
+  "module": "run.js",
+  "type": "module",
+  "scripts": {
+    "start": "node run",
+    "test": "node run --test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
