@@ -1,0 +1,16 @@
+{
+  "name": "2022",
+  "version": "1.0.0",
+  "description": "",
+  "main": "run.js",
+  "module": "run.js",
+  "type": "module",
+  "scripts": {
+    "start": "node run",
+    "test": "node run --test",
+    "watch": "npx nodemon run.js --test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
