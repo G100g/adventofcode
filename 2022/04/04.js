@@ -8,7 +8,7 @@ const getSectionsFromRange = (range) => {
 export default (data) => {
     const sections = dataToArray(data);
 
-    const overlaps = sections
+    const contained = sections
         .map((p) => {
             const [a, b] = p.split(",");
             const [fromA, toA] = getSectionsFromRange(a);
@@ -18,6 +18,18 @@ export default (data) => {
             const isBContainedInA = fromB >= fromA && toB <= toA;
 
             return isAContainedInB || isBContainedInA;
+        })
+        .filter(Boolean);
+
+    printSolution(contained.length);
+
+    const overlaps = sections
+        .map((p) => {
+            const [a, b] = p.split(",");
+            const [fromA, toA] = getSectionsFromRange(a);
+            const [fromB, toB] = getSectionsFromRange(b);
+
+            return fromA <= toB && toA >= fromB;
         })
         .filter(Boolean);
 
